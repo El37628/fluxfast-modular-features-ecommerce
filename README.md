@@ -151,24 +151,45 @@ app.include_router(orders_router)
 
 ## Getting Started
 
-### 1. Local Development (Instant SQLite)
+### 1. Database Setup & Alembic Migrations
 ```bash
-uv sync --extra dev
-uv run uvicorn main:app --reload --port 8000
+# Run database migrations to latest schema revision
+uv run alembic upgrade head
 ```
 
-### 2. Running with MySQL 8.4 via Docker Compose
+### 2. Full-Stack Development with FluxFast Supervisor
+```bash
+# Install frontend dependencies
+(cd frontend && npm install)
+
+# Run full-stack supervisor (FastAPI backend + Next.js frontend)
+uv run fluxfast dev main:app --frontend frontend
+```
+Visit `http://localhost:3000` to interact with the full-stack store!
+
+### 3. Standalone Services
+```bash
+# Backend (FastAPI)
+uv run uvicorn main:app --reload --port 8000
+
+# Frontend (Next.js App Router)
+cd frontend
+npm run dev
+```
+
+### 4. Running with MySQL 8.4 via Docker Compose
 ```bash
 docker compose up --build
 ```
 Access MySQL on port `33063` and the API on `http://localhost:8002`.
 
-### 3. Running Tests
+### 5. Running Tests
 ```bash
 uv run pytest -v
 ```
 
-### 4. Exporting Schema Manifest
+### 6. Full-Stack Type Generation
 ```bash
-uv run fluxfast schema main:app
+uv run fluxfast types --frontend frontend main:app
 ```
+
