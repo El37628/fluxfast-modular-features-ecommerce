@@ -8,6 +8,7 @@ import type { ComponentRegistry, FluxApplicationProps } from "@fluxfast/next";
 
 export const fluxPages: ComponentRegistry = {
   "dashboard/index": { load: () => import("../flux-pages/dashboard/index") },
+  "home/index": { load: () => import("../flux-pages/home/index") },
   "orders/detail": { load: () => import("../flux-pages/orders/detail") },
   "orders/index": { load: () => import("../flux-pages/orders/index") },
   "products/detail": { load: () => import("../flux-pages/products/detail") },
